@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Minhas Anotações</title>
+</head>
+<body>
+    <div>
+        <h1>Minhas Anotações</h1>
+        <textarea type="text" id="nota" rows="4" cols="50"></textarea>
+        
+        <button id="addNote">Adicionar Nota</button>
+        
+        <section>
+            <ul id="list"></ul>
+        </section>
+    </div>
+
+    <script>
+            const nota = document.getElementById('nota');
+            const lista = document.getElementById('list');
+            const addBotao = document.getElementById('addNote');
+
+            addBotao.addEventListener('click', () => {
+                const li = document.createElement('li');
+                const noteContent = document.createElement('span');
+
+                noteContent.textContent = nota.value;
+                nota.value = '';
+
+                // Cria o botão de apagar
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Apagar";
+                deleteButton.classList.add("delete-button");
+                deleteButton.onclick = function() {
+                    li.remove();
+                };
+
+                // Adiciona o conteúdo e o botão ao li
+                li.appendChild(noteContent);
+                li.appendChild(deleteButton);
+
+                // Adiciona o li à lista
+                lista.appendChild(li);
+            });
+
+    </script>
+
+</body>
+</html>
